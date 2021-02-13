@@ -1,5 +1,5 @@
 main {
-  min-height: 95vh;
+  min-height: 100vh;
   padding-top: 100px;
 }
 
@@ -18,4 +18,8 @@ main {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.ratings i {
+  color: #ffc000;
 }

@@ -3,8 +3,8 @@ import {
   Nav,
   Form,
   FormControl,
-  Button,
   Container,
+  Button,
 } from 'react-bootstrap'
 
 const Header = () => {
@@ -22,13 +22,11 @@ const Header = () => {
             <Navbar.Brand href='/'>ElectroMart</Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav'>
-              <Form inline>
-                <FormControl
-                  type='text'
-                  placeholder='Search'
-                  className='mr-sm-2'
-                />
-                <Button variant='outline-success'>Search</Button>
+              <Form inline className='ml-5 px-2 rounded'>
+                <FormControl type='text' placeholder='Search' />
+                <Button variant='outline-light' disabled>
+                  <i className='fas fa-search'></i>
+                </Button>
               </Form>
               <Nav className='ml-auto'>
                 <Nav.Link href='/cart'>
