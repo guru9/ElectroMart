@@ -1,6 +1,27 @@
 {
   "dependencies": {
+    "express": "^4.17.1",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0"
-  }
+  },
+  "name": "electromart",
+  "version": "1.0.0",
+  "description": "Order all kind of electronic products for the best price.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guru9/ElectroMart.git"
+  },
+  "keywords": [
+    "ElectroMart"
+  ],
+  "author": "Gururaj Moger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guru9/ElectroMart/issues"
+  },
+  "homepage": "https://github.com/guru9/ElectroMart#readme"
 }
