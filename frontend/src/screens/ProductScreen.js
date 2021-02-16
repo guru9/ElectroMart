@@ -50,7 +50,7 @@ const ProductScreen = ({ match }) => {
               <Link
                 to='/cart'
                 className={`btn btn-dark btn-block ${
-                  product.countInStock === 0 ? 'disabled' : ''
+                  product.countInStock === 0 && 'disabled'
                 }`}
               >
                 Add To Cart
