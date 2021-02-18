@@ -9,7 +9,10 @@
   "description": "Order all kind of electronic products for the best price.",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server"
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/guru9/ElectroMart/issues"
   },
-  "homepage": "https://github.com/guru9/ElectroMart#readme"
+  "homepage": "https://github.com/guru9/ElectroMart#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.7"
+  }
 }

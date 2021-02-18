@@ -16,7 +16,6 @@ const ProductScreen = ({ match }) => {
     fetchProduct()
   }, [])
 
-  // const product = products.find((p) => p._id === match.params.id)
   const productStatus = product.countInStock === 0 ? 'Out of Stock' : 'In Stock'
   return (
     <>
