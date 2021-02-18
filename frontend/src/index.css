@@ -1,12 +1,11 @@
 body {
   font-size: 14px;
   background-color: #f1f3f6;
-  color: #212121;
   line-height: 1.4;
 }
 
 main {
-  min-height: 92vh;
+  min-height: 100vh;
   padding-top: 100px;
 }
 
@@ -27,6 +26,15 @@ main {
   -webkit-box-orient: vertical;
 }
 
+.prod-image {
+  max-height: 400px;
+}
+
 .ratings i {
   color: #ffc000;
+}
+
+.btn-safran {
+  background: #fb641b;
+  color: #fff;
 }

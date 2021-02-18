@@ -24,7 +24,12 @@ const ProductScreen = ({ match }) => {
       </Link>
       <Row>
         <Col md={6}>
-          <Image src={product.image} alt={product.name} fluid />
+          <Image
+            src={product.image}
+            alt={product.name}
+            fluid
+            className='prod-image'
+          />
         </Col>
         <Col md={3}>
           <ListGroup variant='flush'>
@@ -37,9 +42,6 @@ const ProductScreen = ({ match }) => {
                 text={`${product.numReviews} reviews`}
               />
             </ListGroup.Item>
-            <ListGroup.Item>
-              Price: <strong>${product.price}</strong>
-            </ListGroup.Item>
             <ListGroup.Item>{product.description}</ListGroup.Item>
           </ListGroup>
         </Col>
@@ -48,7 +50,9 @@ const ProductScreen = ({ match }) => {
             <ListGroup.Item>
               <Row>
                 <Col>Price</Col>
-                <Col>${product.price}</Col>
+                <Col>
+                  <strong>${product.price}</strong>
+                </Col>
               </Row>
             </ListGroup.Item>
             <ListGroup.Item>
@@ -60,11 +64,21 @@ const ProductScreen = ({ match }) => {
             <ListGroup.Item>
               <Link
                 to='/cart'
-                className={`btn btn-dark btn-block ${
+                className={`btn btn-warning btn-block ${
                   product.countInStock === 0 && 'disabled'
                 }`}
               >
-                Add To Cart
+                <i className='fas fa-shopping-cart pr-2'></i>
+                <strong>Add To Cart</strong>
+              </Link>
+              <Link
+                to='/cart'
+                className={`btn btn-safran btn-block ${
+                  product.countInStock === 0 && 'disabled'
+                }`}
+              >
+                <i class='fas fa-bolt  pr-2'></i>
+                <strong>Buy Now </strong>
               </Link>
             </ListGroup.Item>
           </ListGroup>

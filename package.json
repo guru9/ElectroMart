@@ -9,6 +9,7 @@
   "version": "1.0.0",
   "description": "Order all kind of electronic products for the best price.",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",

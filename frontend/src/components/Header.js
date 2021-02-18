@@ -5,6 +5,7 @@ import {
   FormControl,
   Container,
   Button,
+  NavDropdown,
 } from 'react-bootstrap'
 
 import { LinkContainer } from 'react-router-bootstrap'
@@ -33,13 +34,34 @@ const Header = () => {
                 </Button>
               </Form>
               <Nav className='ml-auto'>
+                <NavDropdown
+                  title='Guru'
+                  id='basic-nav-dropdown'
+                  className='pr-4'
+                >
+                  <NavDropdown.Item href=''>
+                    <i class='fas fa-user-circle pr-2'></i>My Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href=''>
+                    <i class='fas fa-shopping-bag pr-2'></i>Orders
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href=''>
+                    <i class='fab fa-gratipay pr-2'></i>Wishlist
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href=''>
+                    <i class='fas fa-sign-out-alt pr-2'></i>Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
                 <LinkContainer to='/cart'>
                   <Nav.Link>
                     <i className='fas fa-shopping-cart pr-2'></i>Cart
                   </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to='/login'>
-                  <Nav.Link>
+                  <Nav.Link className='btn-dark rounded'>
                     <i className='fas fa-user pr-2'></i>Sign In
                   </Nav.Link>
                 </LinkContainer>

@@ -9,7 +9,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className='mt-ln-5'>
+      <main>
         <Container>
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
