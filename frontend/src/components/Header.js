@@ -37,25 +37,25 @@ const Header = () => {
                 <NavDropdown
                   title='Guru'
                   id='basic-nav-dropdown'
-                  className='pr-4'
+                  className='pr-5'
                 >
                   <NavDropdown.Item href=''>
-                    <i class='fas fa-user-circle pr-2'></i>My Profile
+                    <i className='fas fa-user-circle pr-2'></i>My Profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href=''>
-                    <i class='fas fa-shopping-bag pr-2'></i>Orders
+                    <i className='fas fa-shopping-bag pr-2'></i>Orders
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href=''>
-                    <i class='fab fa-gratipay pr-2'></i>Wishlist
+                    <i className='fab fa-gratipay pr-2'></i>Wishlist
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href=''>
-                    <i class='fas fa-sign-out-alt pr-2'></i>Logout
+                    <i className='fas fa-sign-out-alt pr-2'></i>Logout
                   </NavDropdown.Item>
                 </NavDropdown>
-                <LinkContainer to='/cart'>
+                <LinkContainer to='/cart' className='pr-3'>
                   <Nav.Link>
                     <i className='fas fa-shopping-cart pr-2'></i>Cart
                   </Nav.Link>

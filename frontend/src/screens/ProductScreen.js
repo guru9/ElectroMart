@@ -77,7 +77,7 @@ const ProductScreen = ({ match }) => {
                   product.countInStock === 0 && 'disabled'
                 }`}
               >
-                <i class='fas fa-bolt  pr-2'></i>
+                <i className='fas fa-bolt  pr-2'></i>
                 <strong>Buy Now </strong>
               </Link>
             </ListGroup.Item>
