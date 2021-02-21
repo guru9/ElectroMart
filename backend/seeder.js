@@ -1,11 +1,10 @@
-import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import User from './models/userModel.js'
 import Product from './models/productModel.js'
 import users from './mockApi/users.js'
 import products from './mockApi/products.js'
-import Order from './models/userModel.js'
+import Order from './models/orderModel.js'
 
 dotenv.config()
 
