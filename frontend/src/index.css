@@ -9,6 +9,7 @@ main {
   padding-top: 100px;
 }
 
+/* product card style */
 .prod-thumb {
   color: #575757;
 }
@@ -30,6 +31,15 @@ main {
   max-height: 400px;
 }
 
+.card {
+  box-shadow: 1px 3px 5px rgb(0 0 0 / 10%);
+}
+
+.card:hover {
+  box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
+}
+
+/* custom button style */
 .btn-safran {
   background: #fb641b;
   color: #fff;
