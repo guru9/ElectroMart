@@ -10,7 +10,7 @@ const App = () => {
     <Router>
       <Header />
       <main>
-        <Container>
+        <Container fluid='md'>
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
         </Container>
