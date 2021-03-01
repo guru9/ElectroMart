@@ -32,9 +32,11 @@ const ProductScreen = ({ match }) => {
 
   return (
     <>
-      <Link className='btn btn-dark my-4' to='/'>
-        Go Back
-      </Link>
+      {!loading && (
+        <Link className='btn btn-dark my-4' to='/'>
+          Go Back
+        </Link>
+      )}
       {loading ? (
         <Loader />
       ) : error ? (

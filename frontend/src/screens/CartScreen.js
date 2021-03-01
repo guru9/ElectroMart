@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
@@ -30,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
   const { cartItems } = cart
 
   const removeFromCartHandler = (id) => {
-    console.log('remove prod')
+    dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = () => {
