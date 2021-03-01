@@ -6,7 +6,6 @@ body {
 
 main {
   min-height: 100vh;
-  padding-top: 100px;
 }
 
 /* product card style */
@@ -25,10 +24,6 @@ main {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-}
-
-.prod-image {
-  max-height: 400px;
 }
 
 .card {
