@@ -39,3 +39,7 @@ main {
   background: #fb641b;
   color: #fff;
 }
+
+.dropdown-toggle::after {
+  margin-left: 6px;
+}
