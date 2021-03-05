@@ -30,6 +30,9 @@ const ProductScreen = ({ match }) => {
       </option>
     ))
 
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+
   return (
     <>
       {!loading && (
@@ -103,7 +106,13 @@ const ProductScreen = ({ match }) => {
                   }`}
                 >
                   <i className='fas fa-shopping-cart pr-2'></i>
-                  <strong>Add To Cart</strong>
+                  <strong>
+                    {cartItems.find(
+                      (items) => items.productId === match.params.id
+                    )
+                      ? 'Go to Cart'
+                      : 'Add To Cart'}
+                  </strong>
                 </Link>
                 <Link
                   to='/cart'
