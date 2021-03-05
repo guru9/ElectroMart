@@ -10,6 +10,7 @@ import { listProductDetails } from '../actions/productActions'
 const ProductScreen = ({ match }) => {
   const [qty, setQty] = useState(1)
 
+  console.log('q--0', qty)
   const dispatch = useDispatch()
   useEffect(() => dispatch(listProductDetails(match.params.id)), [
     dispatch,
@@ -32,6 +33,11 @@ const ProductScreen = ({ match }) => {
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
+  const isInCart = cartItems.find(
+    (items) => items.productId === match.params.id
+  )
+
+  console.log(cartItems.length, isInCart, qty)
 
   return (
     <>
@@ -86,13 +92,17 @@ const ProductScreen = ({ match }) => {
                   <Row>
                     <Col className='m-auto'>Qty</Col>
                     <Col>
-                      <Form.Control
-                        as='select'
-                        value={qty}
-                        onChange={(e) => setQty(e.target.value)}
-                      >
-                        {productQty}
-                      </Form.Control>
+                      {isInCart ? (
+                        isInCart.qty
+                      ) : (
+                        <Form.Control
+                          as='select'
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                        >
+                          {productQty}
+                        </Form.Control>
+                      )}
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -100,19 +110,17 @@ const ProductScreen = ({ match }) => {
 
               <ListGroup.Item>
                 <Link
-                  to={`/cart/${match.params.id}?qty=${qty}`}
+                  to={
+                    isInCart
+                      ? `/cart/${match.params.id}?qty=${isInCart.qty}`
+                      : `/cart/${match.params.id}?qty=${qty}`
+                  }
                   className={`btn btn-warning btn-block ${
                     product.countInStock === 0 && 'disabled'
                   }`}
                 >
                   <i className='fas fa-shopping-cart pr-2'></i>
-                  <strong>
-                    {cartItems.find(
-                      (items) => items.productId === match.params.id
-                    )
-                      ? 'Go to Cart'
-                      : 'Add To Cart'}
-                  </strong>
+                  <strong>{isInCart ? 'Go to Cart' : 'Add To Cart'}</strong>
                 </Link>
                 <Link
                   to='/cart'
