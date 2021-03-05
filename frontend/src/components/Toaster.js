@@ -1,5 +1,6 @@
 import { Toast } from 'react-bootstrap'
 import { useState } from 'react'
+
 const Toaser = ({ toasterShow, children }) => {
   const [show, setShow] = useState(toasterShow)
 
@@ -11,7 +12,10 @@ const Toaser = ({ toasterShow, children }) => {
       delay={3000}
       autohide
     >
-      <Toast.Body>{children}</Toast.Body>
+      <Toast.Body>
+        <i className='far fa-check-circle pr-2'></i>
+        {children}
+      </Toast.Body>
     </Toast>
   )
 }

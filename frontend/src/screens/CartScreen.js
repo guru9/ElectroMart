@@ -1,14 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  ButtonGroup,
-  Button,
-  Form,
-} from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
@@ -17,7 +9,6 @@ import Toaster from '../components/Toaster'
 const CartScreen = ({ match, location, history }) => {
   const [show, setShow] = useState(false)
   const [item, setItem] = useState(null)
-
   const productId = match.params.id
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
@@ -46,9 +37,9 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <>
       {show && (
-        <Toaster
-          toasterShow={show}
-        >{`Successfully removed- ${item.name} from your cart.`}</Toaster>
+        <Toaster toasterShow={show}>
+          {`Successfully removed- ${item.name} from your cart`}
+        </Toaster>
       )}
       {cartItems.length === 0 ? (
         <Message>

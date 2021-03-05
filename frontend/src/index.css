@@ -68,3 +68,7 @@ main {
   padding: 3px 5px;
   font-family: 'Roboto';
 }
+
+.jumbotron {
+  background-color: #f4f7f6;
+}

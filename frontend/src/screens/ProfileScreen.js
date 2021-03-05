@@ -63,7 +63,7 @@ const ProfileScreen = ({ history }) => {
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {show && success && (
-        <Toaster toasterShow={show}>{'Profile Updated Successfully.'}</Toaster>
+        <Toaster toasterShow={show}>{'Profile updated successfully'}</Toaster>
       )}
       {loading ? (
         <Loader />
