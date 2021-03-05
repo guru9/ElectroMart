@@ -57,7 +57,6 @@ const ProfileScreen = ({ history }) => {
     setShow(true)
   }
 
-  console.log('m', message)
   return (
     <div className='p-4' style={{ boxShadow: '0px 0px 10px 0px #eee' }}>
       <h4>Profile</h4>

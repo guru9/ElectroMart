@@ -10,7 +10,6 @@ import { listProductDetails } from '../actions/productActions'
 const ProductScreen = ({ match }) => {
   const [qty, setQty] = useState(1)
 
-  console.log('q--0', qty)
   const dispatch = useDispatch()
   useEffect(() => dispatch(listProductDetails(match.params.id)), [
     dispatch,
@@ -33,11 +32,7 @@ const ProductScreen = ({ match }) => {
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
-  const isInCart = cartItems.find(
-    (items) => items.productId === match.params.id
-  )
-
-  console.log(cartItems.length, isInCart, qty)
+  const isInCart = cartItems.find((item) => item.productId === match.params.id)
 
   return (
     <>

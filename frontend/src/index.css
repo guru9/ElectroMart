@@ -36,17 +36,18 @@ main {
 
 /* custom button style */
 .btn-safran,
-.badge-safran,
-.toaster-safran {
+.badge-safran {
   background: #fb641b;
   color: #fff;
 }
 
-.toaster-safran {
+.toaster-success {
   position: fixed;
   top: 100px;
   right: 20px;
   z-index: 1;
+  background: #008000;
+  color: #fff;
 }
 
 .dropdown-toggle::after {

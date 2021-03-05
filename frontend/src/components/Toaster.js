@@ -5,7 +5,7 @@ const Toaser = ({ toasterShow, children }) => {
 
   return (
     <Toast
-      className='toaster-safran'
+      className='toaster-success'
       onClose={() => setShow(false)}
       show={show}
       delay={3000}
