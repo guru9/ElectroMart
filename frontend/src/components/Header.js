@@ -6,6 +6,7 @@ import {
   Container,
   Button,
   NavDropdown,
+  Badge,
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -20,10 +21,26 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const userProfileUpdate = useSelector((state) => state.userProfileUpdate)
+  const { userProfile } = userProfileUpdate
+
+  const userDetails = useSelector((state) => state.userDetails)
+  const { user } = userDetails
+
   const logoutHandler = () => {
     dispatch(doLogout())
     history.push('/login')
   }
+
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+
+  const userName =
+    Object.keys(userProfile).length > 0 && userInfo
+      ? userProfile.name
+      : userInfo && Object.keys(user).length > 0
+      ? user.name
+      : userInfo && userInfo.name
 
   return (
     <>
@@ -50,18 +67,20 @@ const Header = () => {
               <Nav className='ml-auto'>
                 {userInfo && (
                   <NavDropdown
-                    title={userInfo.name}
+                    title={userName}
                     id='basic-nav-dropdown'
                     className='pr-5'
                   >
-                    <NavDropdown.Item to='/profile'>
-                      <i className='fas fa-user-circle pr-2'></i>My Profile
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href=''>
-                      <i className='fas fa-shopping-bag pr-2'></i>Orders
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    <LinkContainer to='/profile'>
+                      <NavDropdown.Item>
+                        <i className='fas fa-user-circle pr-2'></i>My Profile
+                      </NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to='/orders'>
+                      <NavDropdown.Item>
+                        <i className='fas fa-shopping-bag pr-2'></i>Orders
+                      </NavDropdown.Item>
+                    </LinkContainer>
                     <NavDropdown.Item href=''>
                       <i className='fab fa-gratipay pr-2'></i>Wishlist
                     </NavDropdown.Item>
@@ -74,7 +93,18 @@ const Header = () => {
 
                 <LinkContainer to='/cart' className='pr-3'>
                   <Nav.Link>
-                    <i className='fas fa-shopping-cart pr-2'></i>Cart
+                    <i
+                      className={`fas fa-shopping-cart  ${
+                        cartItems.length === 0 && 'pr-2'
+                      }`}
+                    >
+                      {cartItems.length > 0 && (
+                        <Badge className='cart-badge badge-safran'>
+                          {cartItems.length}
+                        </Badge>
+                      )}
+                    </i>
+                    Cart
                   </Nav.Link>
                 </LinkContainer>
                 {!userInfo && (

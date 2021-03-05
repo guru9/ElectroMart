@@ -35,11 +35,35 @@ main {
 }
 
 /* custom button style */
-.btn-safran {
+.btn-safran,
+.badge-safran,
+.toaster-safran {
   background: #fb641b;
   color: #fff;
 }
 
+.toaster-safran {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 1;
+}
+
 .dropdown-toggle::after {
   margin-left: 6px;
+}
+
+.dropdown-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.cart-badge {
+  position: relative;
+  left: -3px;
+  bottom: 12px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-family: 'Roboto';
 }
