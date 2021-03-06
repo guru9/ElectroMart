@@ -44,9 +44,8 @@ export const doLogin = (email, password) => async (dispatch) => {
 }
 
 export const doLogout = () => (dispatch) => {
-  localStorage.removeItem('userInfo')
-  localStorage.removeItem('userInfo')
   dispatch({ type: USER_LOGOUT })
+  localStorage.removeItem('userInfo')
 }
 
 export const doRegister = (name, email, password) => async (dispatch) => {
