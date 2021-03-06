@@ -1,47 +1,27 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
+import { persistStore } from 'redux-persist'
 import thunk from 'redux-thunk'
+import appReducer from './reducers/rootReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import {
-  productListReducer,
-  productDetailsReducer,
-} from './reducers/productReducer'
-import { cartReducer } from './reducers/cartReducer'
-import {
-  userDetailsReducer,
-  userLoginReducer,
-  userProfileUpdateReducer,
-  userRegisterReducer,
-} from './reducers/userReducer'
 
-const reducer = combineReducers({
-  productList: productListReducer,
-  productDetails: productDetailsReducer,
-  cart: cartReducer,
-  userLogin: userLoginReducer,
-  userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer,
-  userProfileUpdate: userProfileUpdateReducer,
-})
-
-const cartItemsfromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : []
-
-const userInfofromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : {}
-
-const intialState = {
-  cart: { cartItems: cartItemsfromStorage },
-  userLogin: { userInfo: userInfofromStorage },
-}
-
+const intialState = {}
 const middleware = [thunk]
 
-const store = createStore(
-  reducer,
-  intialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
+const configureStore = () => {
+  const store = createStore(
+    appReducer,
+    intialState,
+    composeWithDevTools(applyMiddleware(...middleware))
+  )
 
-export default store
+  console.info('persisit state', store.getState())
+
+  let persistor = persistStore(store)
+
+  return {
+    persistor,
+    store,
+  }
+}
+
+export default configureStore

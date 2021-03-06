@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { doLogout } from '../actions/userActions'
 import { useHistory } from 'react-router-dom'
+import { validObj } from '../utils/validObj'
 
 const Header = () => {
   let history = useHistory()
@@ -24,23 +25,18 @@ const Header = () => {
   const userProfileUpdate = useSelector((state) => state.userProfileUpdate)
   const { userProfile } = userProfileUpdate
 
-  const userDetails = useSelector((state) => state.userDetails)
-  const { user } = userDetails
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
+
+  const userName =
+    validObj(userInfo) && validObj(userProfile)
+      ? userProfile.name
+      : validObj(userInfo) && userInfo.name
 
   const logoutHandler = () => {
     dispatch(doLogout())
     history.push('/login')
   }
-
-  const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
-
-  const userName =
-    Object.keys(userProfile).length > 0 && userInfo
-      ? userProfile.name
-      : userInfo && Object.keys(user).length > 0
-      ? user.name
-      : userInfo && userInfo.name
 
   return (
     <>

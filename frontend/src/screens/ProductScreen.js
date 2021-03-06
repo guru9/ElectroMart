@@ -6,8 +6,9 @@ import Ratings from '../components/Ratings'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listProductDetails } from '../actions/productActions'
+import { addToCart } from '../actions/cartActions'
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1)
 
   const dispatch = useDispatch()
@@ -34,6 +35,11 @@ const ProductScreen = ({ match }) => {
   const { cartItems } = cart
   const isInCart = cartItems.find((item) => item.productId === match.params.id)
 
+  const addToCartHandle = async () => {
+    await dispatch(addToCart(match.params.id, qty))
+    history.push(`/cart`)
+  }
+
   return (
     <>
       {!loading && (
@@ -45,7 +51,7 @@ const ProductScreen = ({ match }) => {
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
-      ) : product === {} ? (
+      ) : Object.keys(product).length === 0 ? (
         <Message>Product Empty.</Message>
       ) : (
         <Row>
@@ -104,26 +110,36 @@ const ProductScreen = ({ match }) => {
               )}
 
               <ListGroup.Item>
-                <Link
-                  to={
-                    isInCart
-                      ? `/cart/${match.params.id}?qty=${isInCart.qty}`
-                      : `/cart/${match.params.id}?qty=${qty}`
-                  }
-                  className={`btn btn-warning btn-block ${
-                    product.countInStock === 0 && 'disabled'
-                  }`}
-                >
-                  <i className='fas fa-shopping-cart pr-2'></i>
-                  <strong>{isInCart ? 'Go to Cart' : 'Add To Cart'}</strong>
-                </Link>
-                <Link
-                  to='/cart'
-                  className={`btn btn-safran btn-block ${
-                    product.countInStock === 0 && 'disabled'
-                  }`}
-                >
-                  <i className='fas fa-bolt  pr-2'></i>
+                {isInCart ? (
+                  <Button
+                    type='button'
+                    className='btn btn-safran btn-block'
+                    variant='btn-safran'
+                    onClick={() =>
+                      history.push(`/cart/${match.params.id}`, {
+                        key: isInCart.qty,
+                      })
+                    }
+                    disabled={product.countInStock === 0}
+                  >
+                    <i className='fas fa-shopping-cart pr-2'></i>
+                    <strong>{'Go to Cart'}</strong>
+                  </Button>
+                ) : (
+                  <Button
+                    type='button'
+                    className='btn btn-safran btn-block'
+                    variant='btn-safran'
+                    onClick={addToCartHandle}
+                    disabled={product.countInStock === 0}
+                  >
+                    <i className='fas fa-shopping-cart pr-2'></i>
+                    <strong>{'Add To Cart'}</strong>
+                  </Button>
+                )}
+
+                <Link to='/cart' className='btn btn-safran btn-block  disabled'>
+                  <i className='fas fa-bolt pr-2'></i>
                   <strong>Buy Now </strong>
                 </Link>
               </ListGroup.Item>

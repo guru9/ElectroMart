@@ -2,7 +2,6 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
-  USER_LOGOUT,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
@@ -22,8 +21,6 @@ export const userLoginReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload }
     case USER_LOGIN_FAIL:
       return { loading: false, error: action.payload }
-    case USER_LOGOUT:
-      return {}
     default:
       return state
   }
@@ -61,11 +58,19 @@ export const userProfileUpdateReducer = (
 ) => {
   switch (action.type) {
     case USER_PROFILE_UPDATE_REQUEST:
-      return { ...state, loading: true, success: false }
+      return { ...state, updateLoading: true, success: false }
     case USER_PROFILE_UPDATE_SUCCESS:
-      return { loading: false, success: true, userProfile: action.payload }
+      return {
+        updateLoading: false,
+        success: true,
+        userProfile: action.payload,
+      }
     case USER_PROFILE_UPDATE_FAIL:
-      return { loading: false, error: action.payload, success: false }
+      return {
+        updateLoading: false,
+        updateError: action.payload,
+        success: false,
+      }
     default:
       return state
   }

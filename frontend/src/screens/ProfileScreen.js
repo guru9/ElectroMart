@@ -5,6 +5,7 @@ import { getUserDetails, updateUserDetails } from '../actions/userActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Toaster from '../components/Toaster'
+import { validObj } from '../utils/validObj'
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('')
@@ -17,26 +18,38 @@ const ProfileScreen = ({ history }) => {
   const dispatch = useDispatch()
 
   const userDetails = useSelector((state) => state.userDetails)
-  const { loading, user } = userDetails
+  const { loading, user, error } = userDetails
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   const userProfileUpdate = useSelector((state) => state.userProfileUpdate)
-  const { success, error } = userProfileUpdate
+  const { success, updateError, userProfile, updateLoading } = userProfileUpdate
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login')
     } else {
-      if (!user.name || !user.email) {
-        dispatch(getUserDetails('profile'))
+      if (validObj(userProfile)) {
+        setName(userProfile.name)
+        setEmail(userProfile.email)
       } else {
-        setName(user.name)
-        setEmail(user.email)
+        getProfileInfo()
       }
     }
-  }, [dispatch, history, userInfo, user])
+  }, [])
+
+  const getProfileInfo = async () => {
+    try {
+      await dispatch(getUserDetails('profile'))
+      setName(user.name)
+      setEmail(user.email)
+    } catch (err) {
+      console.log(err)
+      setName(userInfo.name)
+      setEmail(userInfo.email)
+    }
+  }
 
   const updateProfileHandler = (e) => {
     e.preventDefault()
@@ -61,55 +74,60 @@ const ProfileScreen = ({ history }) => {
     <div className='p-4' style={{ boxShadow: '0px 0px 10px 0px #eee' }}>
       <h4>Profile</h4>
       {message && <Message variant='danger'>{message}</Message>}
-      {error && <Message variant='danger'>{error}</Message>}
+      {error ||
+        (updateError && (
+          <Message variant='danger'>{error | updateError}</Message>
+        ))}
       {show && success && (
         <Toaster toasterShow={show}>{'Profile updated successfully'}</Toaster>
       )}
-      {loading ? (
+      {updateLoading || loading ? (
         <Loader />
       ) : (
         <>
-          <Form onSubmit={updateProfileHandler} className='pt-4'>
-            <Form.Group controlId='name'>
-              <Form.Label>Name </Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter name'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId='email'>
-              <Form.Label>Email </Form.Label>
-              <Form.Control
-                type='email'
-                placeholder='Enter email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId='password'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId='confirmPassword'>
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type='confirmPassword'
-                placeholder='Password'
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </Form.Group>
-            <Button variant='dark' type='submit'>
-              Update
-            </Button>
-          </Form>
+          {user && (
+            <Form onSubmit={updateProfileHandler} className='pt-4'>
+              <Form.Group controlId='name'>
+                <Form.Label>Name </Form.Label>
+                <Form.Control
+                  type='name'
+                  placeholder='Enter name'
+                  value={name || user.name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId='email'>
+                <Form.Label>Email </Form.Label>
+                <Form.Control
+                  type='email'
+                  placeholder='Enter email'
+                  value={email || user.email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId='password'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type='password'
+                  placeholder='Password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId='confirmPassword'>
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type='confirmPassword'
+                  placeholder='Password'
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </Form.Group>
+              <Button variant='dark' type='submit'>
+                Update
+              </Button>
+            </Form>
+          )}
         </>
       )}
     </div>

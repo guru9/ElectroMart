@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -9,24 +9,15 @@ import Toaster from '../components/Toaster'
 const CartScreen = ({ match, location, history }) => {
   const [show, setShow] = useState(false)
   const [item, setItem] = useState(null)
-  const productId = match.params.id
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (productId) {
-      dispatch(addToCart(productId, qty))
-    }
-  }, [dispatch, productId, qty])
-
   const cart = useSelector((state) => state.cart)
-
   const { cartItems } = cart
 
-  const removeFromCartHandler = (id) => {
+  const removeFromCartHandler = async (id) => {
     setItem(cartItems.find((item) => item.productId === id))
-    dispatch(removeFromCart(id))
+    await dispatch(removeFromCart(id))
     setShow(true)
   }
 
@@ -36,7 +27,7 @@ const CartScreen = ({ match, location, history }) => {
 
   return (
     <>
-      {show && (
+      {show && item && (
         <Toaster toasterShow={show}>
           {`Successfully removed- ${item.name} from your cart`}
         </Toaster>
@@ -104,7 +95,9 @@ const CartScreen = ({ match, location, history }) => {
                         type='button'
                         variant='light'
                         style={{ boxShadow: 'none', background: 'transparent' }}
-                        onClick={() => removeFromCartHandler(product.productId)}
+                        onClick={(e) =>
+                          removeFromCartHandler(product.productId)
+                        }
                       >
                         <i className='fas fa-trash'></i>
                       </Button>
@@ -124,7 +117,10 @@ const CartScreen = ({ match, location, history }) => {
                   <Col>Items</Col>
                   <Col>
                     <strong>
-                      {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                      {cartItems.reduce(
+                        (acc, item) => acc + Number(item.qty),
+                        0
+                      )}
                     </strong>
                   </Col>
                 </Row>
@@ -144,7 +140,7 @@ const CartScreen = ({ match, location, history }) => {
                 <Button
                   type='button'
                   className='btn btn-safran btn-block'
-                  variant='dark'
+                  variant='btn-safran'
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
                 >
