@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import Toaster from '../components/Toaster'
+import Prompt from '../components/Prompt'
 
-const CartScreen = ({ match, location, history }) => {
+const CartScreen = ({ history }) => {
   const [show, setShow] = useState(false)
+  const [modalShow, setModalShow] = useState(false)
   const [item, setItem] = useState(null)
 
   const dispatch = useDispatch()
@@ -15,18 +17,39 @@ const CartScreen = ({ match, location, history }) => {
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
 
-  const removeFromCartHandler = async (id) => {
+  const removeFromCartHandler = (id) => {
     setItem(cartItems.find((item) => item.productId === id))
-    await dispatch(removeFromCart(id))
-    setShow(true)
+    setModalShow(true)
   }
 
   const checkoutHandler = () => {
     history.push('/login?redirect=shipping')
   }
 
+  const removeItem = async (rowData) => {
+    await dispatch(removeFromCart(rowData.productId))
+    setShow(true)
+    setModalShow(false)
+  }
+
+  const modalShowChange = (modalValue) => {
+    setModalShow(modalValue)
+  }
+
   return (
     <>
+      {modalShow && item && (
+        <Prompt
+          modalShow={modalShow}
+          promptTitle='Remove Item'
+          actionTitle='REMOVE'
+          rowData={item}
+          handleRemove={removeItem}
+          handleModalShow={modalShowChange}
+        >
+          Are you sure you want to remove this item?
+        </Prompt>
+      )}
       {show && item && (
         <Toaster toasterShow={show}>
           {`Successfully removed- ${item.name} from your cart`}
@@ -145,7 +168,7 @@ const CartScreen = ({ match, location, history }) => {
                   onClick={checkoutHandler}
                 >
                   <i className='fas fa-money-check-alt fa-2 pr-2'></i>
-                  Proceed to checkout
+                  <strong>Proceed to checkout</strong>
                 </Button>
               </ListGroup.Item>
             </ListGroup>
