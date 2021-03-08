@@ -1,7 +1,7 @@
 import { Toast } from 'react-bootstrap'
 import { useState } from 'react'
 
-const Toaser = ({ toasterShow, children }) => {
+const Toaster = ({ toasterShow, children }) => {
   const [show, setShow] = useState(toasterShow)
 
   return (
@@ -20,4 +20,4 @@ const Toaser = ({ toasterShow, children }) => {
   )
 }
 
-export default Toaser
+export default Toaster

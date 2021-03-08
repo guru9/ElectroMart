@@ -4,13 +4,11 @@ import thunk from 'redux-thunk'
 import appReducer from './reducers/rootReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-const intialState = {}
 const middleware = [thunk]
 
 const configureStore = () => {
   const store = createStore(
     appReducer,
-    intialState,
     composeWithDevTools(applyMiddleware(...middleware))
   )
 
