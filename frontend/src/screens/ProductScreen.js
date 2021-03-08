@@ -7,9 +7,11 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listProductDetails } from '../actions/productActions'
 import { addToCart } from '../actions/cartActions'
+import { Spinner } from 'react-bootstrap'
 
 const ProductScreen = ({ match, history }) => {
   const [qty, setQty] = useState(1)
+  const [addingToCart, setAddingToCart] = useState(false)
 
   const dispatch = useDispatch()
   useEffect(() => dispatch(listProductDetails(match.params.id)), [
@@ -36,7 +38,9 @@ const ProductScreen = ({ match, history }) => {
   const isInCart = cartItems.find((item) => item.productId === match.params.id)
 
   const addToCartHandle = async () => {
+    setAddingToCart(true)
     await dispatch(addToCart(match.params.id, qty))
+    setAddingToCart(false)
     history.push(`/cart`)
   }
 
@@ -122,23 +126,43 @@ const ProductScreen = ({ match, history }) => {
                     }
                     disabled={product.countInStock === 0}
                   >
-                    <i className='fas fa-shopping-cart pr-2'></i>
-                    <strong>{'Go to Cart'}</strong>
+                    {!addingToCart && (
+                      <>
+                        <i className='fas fa-shopping-cart pr-2'></i>
+                        <strong>{'Go to Cart'}</strong>
+                      </>
+                    )}
                   </Button>
                 ) : (
                   <Button
                     type='button'
-                    className='btn btn-safran btn-block'
-                    variant='btn-safran'
+                    className={
+                      addingToCart
+                        ? 'btn btn-secondary btn-block'
+                        : 'btn btn-safran btn-block'
+                    }
+                    variant={addingToCart ? 'dark' : 'btn-safran'}
                     onClick={addToCartHandle}
                     disabled={product.countInStock === 0}
                   >
-                    <i className='fas fa-shopping-cart pr-2'></i>
-                    <strong>{'Add To Cart'}</strong>
+                    {addingToCart ? (
+                      <>
+                        <Spinner animation='border' variant='light' size='sm' />
+                        <strong className='pl-2'>{'GOING TO CART'}</strong>
+                      </>
+                    ) : (
+                      <>
+                        <i className='fas fa-shopping-cart pr-2'></i>
+                        <strong>{'Add To Cart'}</strong>
+                      </>
+                    )}
                   </Button>
                 )}
 
-                <Link to='/cart' className='btn btn-safran btn-block  disabled'>
+                <Link
+                  to='/cart'
+                  className='btn btn-warning btn-block  disabled'
+                >
                   <i className='fas fa-bolt pr-2'></i>
                   <strong>Buy Now </strong>
                 </Link>
