@@ -66,7 +66,10 @@ export const doRegister = (name, email, password) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data })
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
 
-    // localStorage.setItem('userInfo', JSON.stringify(data))
+    localStorage.setItem(
+      'userLoggedIn',
+      btoa(`Hey ${data.name}! Welcome to ElectroMart`)
+    )
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
