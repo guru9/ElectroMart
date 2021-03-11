@@ -5,6 +5,7 @@ import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listProducts } from '../actions/productActions'
+import Toaster from '../components/Toaster'
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -12,8 +13,16 @@ const HomeScreen = () => {
 
   const productList = useSelector((state) => state.productList)
   const { loading, error, products } = productList
+
+  const welcomeUser =
+    localStorage.getItem('userLoggedIn') &&
+    atob(localStorage.getItem('userLoggedIn'))
+
+  welcomeUser && setTimeout(() => localStorage.removeItem('userLoggedIn'), 2000)
+
   return (
     <>
+      {welcomeUser && <Toaster>{welcomeUser}</Toaster>}
       {loading ? (
         <Loader />
       ) : error ? (

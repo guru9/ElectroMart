@@ -30,6 +30,10 @@ export const doLogin = (email, password) => async (dispatch) => {
       config
     )
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data })
+    localStorage.setItem(
+      'userLoggedIn',
+      btoa(`Hey ${data.name}! Welcome to ElectroMart`)
+    )
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
