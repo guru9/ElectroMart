@@ -7,7 +7,7 @@ import Message from '../components/Message'
 import { listProducts } from '../actions/productActions'
 import Toaster from '../components/Toaster'
 
-const HomeScreen = () => {
+const HomeScreen = (history) => {
   const dispatch = useDispatch()
   useEffect(() => dispatch(listProducts()), [dispatch])
 
@@ -16,9 +16,8 @@ const HomeScreen = () => {
 
   const welcomeUser =
     localStorage.getItem('userLoggedIn') &&
+    history.location.pathname &&
     atob(localStorage.getItem('userLoggedIn'))
-
-  welcomeUser && setTimeout(() => localStorage.removeItem('userLoggedIn'), 2000)
 
   return (
     <>

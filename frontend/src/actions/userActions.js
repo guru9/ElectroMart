@@ -34,6 +34,8 @@ export const doLogin = (email, password) => async (dispatch) => {
       'userLoggedIn',
       btoa(`Hey ${data.name}! Welcome to ElectroMart`)
     )
+
+    setTimeout(() => localStorage.removeItem('userLoggedIn'), 2000)
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -70,6 +72,7 @@ export const doRegister = (name, email, password) => async (dispatch) => {
       'userLoggedIn',
       btoa(`Hey ${data.name}! Welcome to ElectroMart`)
     )
+    setTimeout(() => localStorage.removeItem('userLoggedIn'), 2000)
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -124,7 +127,11 @@ export const updateUserDetails = (user) => async (dispatch, getState) => {
       },
     }
     const { data } = await axios.put('/api/users/profile', user, config)
-    dispatch({ type: USER_PROFILE_UPDATE_SUCCESS, payload: data })
+    dispatch({
+      type: USER_PROFILE_UPDATE_SUCCESS,
+      payload: data,
+      success: true,
+    })
   } catch (error) {
     dispatch({
       type: USER_PROFILE_UPDATE_FAIL,
