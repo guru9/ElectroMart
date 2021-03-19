@@ -12,7 +12,7 @@ const configureStore = () => {
     composeWithDevTools(applyMiddleware(...middleware))
   )
 
-  console.info('persisit state', store.getState())
+  console.info('persist state', store.getState())
 
   let persistor = persistStore(store)
 
