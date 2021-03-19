@@ -44,3 +44,7 @@ app.listen(
   5000,
   console.log(`server running in ${process.env.NODE_ENV} on port ${PORT}`)
 )
+const server = app.listen(PORT, function () {
+  const port = server.address().port
+  console.log(`server running in ${process.env.NODE_ENV} on port ${port}`)
+})
