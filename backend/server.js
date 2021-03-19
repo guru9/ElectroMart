@@ -31,19 +31,11 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('frontend/build'))
-// }
-
 app.use(errorHandler)
 app.use(notFound)
 
 const PORT = process.env.PORT || 5000
 
-// app.listen(
-//   5000,
-//   console.log(`server running in ${process.env.NODE_ENV} on port ${PORT}`)
-// )
 const server = app.listen(PORT, function () {
   const port = server.address().port
   console.log(`server running in ${process.env.NODE_ENV} on port ${port}`)
