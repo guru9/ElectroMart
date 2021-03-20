@@ -54,6 +54,7 @@ https://electromartapp.herokuapp.com/  🏃‍♀️ 👓
 - adding to cart and remove cart items
 - remove items from cart - prompt dialog
 - Forms and alert message
+- 404- no page found
 
 ## Features coming soon (in development)
 
