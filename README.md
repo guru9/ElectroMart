@@ -99,7 +99,7 @@ JWT_SECRET = 'abc123'
 
 ```
 npm install (for server)
-install-client (for client)
+npm run install-client (for client)
 ```
 
 ### Run
@@ -116,7 +116,6 @@ npm run server
 
 ```
 # Create frontend prod build
-cd frontend
 npm run build
 ```
 
