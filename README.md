@@ -1,10 +1,10 @@
-## ProShop eCommerce Platform
+## 🛒 ProShop eCommerce Platform 🔥 💟 
 
-> eCommerce platform built with the MERN stack & Redux.
+> eCommerce platform built with the MERN stack & Redux. 🤸
 
-# demo
+# demo  🚀 ✈️
 
-https://electromartapp.herokuapp.com/
+https://electromartapp.herokuapp.com/  🏃‍♀️ 👓
 
 ## Project Screen Shot(s)
 
