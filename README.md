@@ -6,7 +6,7 @@
 
 https://electromartapp.herokuapp.com/  🏃‍♀️ 👓
 
-## Project Screen Shot(s)
+## Project Screen Shot(s) 🖼️ 🛄
 
 ### Login Page
 
