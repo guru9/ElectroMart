@@ -69,6 +69,7 @@ https://electromartapp.herokuapp.com/  🏃‍♀️ 👓
 - Ordered products
 - Country based currencry and price rate
 - Image upload
+- product details image- hover on image to get zoom view
 
 ## Note on Issues
 
