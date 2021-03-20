@@ -21,6 +21,7 @@ const HomeScreen = (history) => {
 
   return (
     <>
+    <h3>LATEST PRODUCTS</h3>
       {welcomeUser && <Toaster>{welcomeUser}</Toaster>}
       {loading ? (
         <Loader />

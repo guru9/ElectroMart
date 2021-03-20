@@ -46,6 +46,7 @@ const ProductScreen = ({ match, history }) => {
 
   return (
     <>
+    <h3>PRODUCT DETAILS</h3>
       {!loading && (
         <Link className='btn btn-dark my-4' to='/'>
           Go Back
@@ -108,6 +109,8 @@ const ProductScreen = ({ match, history }) => {
                           {productQty}
                         </Form.Control>
                       )}
+                      <br/>
+                      <span className="text-black-50">Available: {product.countInStock}</span>
                     </Col>
                   </Row>
                 </ListGroup.Item>

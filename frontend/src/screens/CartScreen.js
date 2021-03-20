@@ -38,6 +38,8 @@ const CartScreen = ({ history }) => {
 
   return (
     <>
+    <h3>My Cart ({cartItems.length})</h3><br/>
+
       {modalShow && item && (
         <Prompt
           modalShow={modalShow}
@@ -109,7 +111,8 @@ const CartScreen = ({ history }) => {
                                 )
                               )}
                             </Form.Control>
-                          )}
+                          )}<br/>
+                          <span className="text-black-50 float-right">Available: {product.countInStock}</span>
                         </Col>
                       </Row>
                     </Col>
