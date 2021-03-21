@@ -1,4 +1,4 @@
-## 🛒 ProShop eCommerce Platform 🔥 💟 
+## 🛒 elctroMart eCommerce Platform 🔥 💟 
 
 > eCommerce platform built with the MERN stack & Redux. 🤸
 
