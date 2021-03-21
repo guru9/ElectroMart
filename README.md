@@ -1,4 +1,4 @@
-## 🛒 elctroMart eCommerce Platform 🔥 💟 
+## 🛒 elctroMart Shopping App 🔥 💟 
 
 > eCommerce platform built with the MERN stack & Redux. 🤸
 
