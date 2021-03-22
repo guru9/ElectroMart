@@ -7,16 +7,6 @@
 https://electromartapp.herokuapp.com/  🏃‍♀️ 👓
 
 
-
-
-
-### electromart api's 🧫 🧲
-https://documenter.getpostman.com/view/1036109/Tz5wWudJ
-
-
-
-
-
 ## Project Screen Shot(s) 🖼️ 🛄
 
 ### Login Page
@@ -85,11 +75,11 @@ https://documenter.getpostman.com/view/1036109/Tz5wWudJ
 - Wishlist
 
 
-## Note on Issues
-
-Please do not post issues here that are related to your own code when taking the course. Add those in the Udemy Q/A. If you clone THIS repo and there are issues, then you can submit
 
 ## Usage
+
+### electromart api's 🧫 🧲
+https://documenter.getpostman.com/view/1036109/Tz5wWudJ
 
 ### ES Modules in Node
 
